@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>My Link Hub</title>
+<meta name="description" content="A personal, private dashboard for your favorite links, apps and shortcuts." />
+
+<!-- Optional web fonts. Everything falls back to system fonts if offline. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+
+<!-- Inline favicon so the tab doesn't look broken -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%236C8CFF'/%3E%3Ctext x='50' y='66' font-size='52' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+</head>
+<body data-theme="dark">
+
+<!-- ============== SVG ICON LIBRARY (hidden, referenced via <use>) ============== -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></symbol>
+  <symbol id="icon-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="14" cy="6" r="2" fill="currentColor"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="8" cy="12" r="2" fill="currentColor"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="16" cy="18" r="2" fill="currentColor"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="icon-grip" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></symbol>
+  <symbol id="icon-kebab" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.5 21 12 17.5 5.5 21 7 14.1 2 9.3 9 8.5"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
+  <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+  <symbol id="icon-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="icon-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="icon-folder-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></symbol>
+  <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></symbol>
+  <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></symbol>
+  <symbol id="icon-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></symbol>
+  <symbol id="icon-fire" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 4-4 5-4 9a4 4 0 0 0 8 0c0-1.5-1-2.5-1-4 2 1 3 3 3 5a6 6 0 0 1-12 0C6 7 9 5 12 2Z"/></symbol>
+  <symbol id="icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7L13 18"/></symbol>
+</svg>
+
+<!-- ============== BACKGROUND LAYERS ============== -->
+<div id="bgLayer" class="bg-layer" aria-hidden="true"></div>
+<div id="bgOverlay" class="bg-overlay" aria-hidden="true"></div>
+
+<!-- ============== TOASTS ============== -->
+<div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ============== HEADER ============== -->
+<header class="hub-header">
+  <div class="header-inner">
+
+    <div class="greeting-clock">
+      <p id="clockTime" class="clock-time">--:--</p>
+      <p class="greeting-text">
+        <span id="greetingPrefix">Good day</span>,
+        <span id="greetingName" class="greeting-name" contenteditable="true" spellcheck="false" title="Click to set your name">friend</span>
+      </p>
+    </div>
+
+    <form id="searchForm" class="search-form glass" role="search" autocomplete="off">
+      <button type="submit" class="search-icon-btn" aria-label="Search">
+        <svg class="icon"><use href="#icon-search"/></svg>
+      </button>
+      <input id="searchInput" class="search-input" type="text"
+             placeholder="Search your shortcuts or the web…"
+             aria-label="Search shortcuts or the web" />
+      <button type="button" id="voiceBtn" class="voice-icon-btn" aria-label="Voice search">
+        <svg class="icon"><use href="#icon-mic"/></svg>
+      </button>
+      <div id="searchResults" class="search-results" role="listbox" hidden></div>
+    </form>
+
+    <button id="settingsToggle" class="icon-btn header-icon-btn" aria-label="Open settings" aria-haspopup="true">
+      <svg class="icon"><use href="#icon-sliders"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============== MAIN ============== -->
+<main class="hub-main">
+
+  <section id="favoritesSection" class="shortcut-row" hidden>
+    <h2 class="row-title"><svg class="icon row-icon"><use href="#icon-star"/></svg>Pinned</h2>
+    <div id="favoritesGrid" class="shortcut-grid"></div>
+  </section>
+
+  <section id="recentSection" class="shortcut-row" hidden>
+    <h2 class="row-title"><svg class="icon row-icon"><use href="#icon-clock"/></svg>Recently Opened</h2>
+    <div id="recentGrid" class="shortcut-grid"></div>
+  </section>
+
+  <section id="mostUsedSection" class="shortcut-row" hidden>
+    <h2 class="row-title"><svg class="icon row-icon"><use href="#icon-fire"/></svg>Most Used</h2>
+    <div id="mostUsedGrid" class="shortcut-grid"></div>
+  </section>
+
+  <div id="categoriesContainer" class="categories-container"></div>
+
+  <div id="emptyState" class="empty-state" hidden>
+    <svg class="icon empty-icon"><use href="#icon-link"/></svg>
+    <p>Your hub is empty</p>
+    <span>Add a shortcut to start building your personal homepage.</span>
+    <button id="emptyAddBtn" class="btn btn-primary">
+      <svg class="icon"><use href="#icon-plus"/></svg> Add your first shortcut
+    </button>
+  </div>
+</main>
+
+<footer class="hub-footer">
+  <p>My Link Hub — everything stays on this device. No accounts, no servers.</p>
+</footer>
+
+<!-- ============== FLOATING ADD BUTTON ============== -->
+<div class="fab-wrap">
+  <div id="fabMenu" class="fab-menu" role="menu" hidden>
+    <button class="fab-menu-item" id="fabAddShortcut" role="menuitem">
+      <svg class="icon"><use href="#icon-link"/></svg> Add Shortcut
+    </button>
+    <button class="fab-menu-item" id="fabAddCategory" role="menuitem">
+      <svg class="icon"><use href="#icon-folder-plus"/></svg> Add Category
+    </button>
+  </div>
+  <button id="fabAdd" class="fab" aria-label="Add shortcut or category" aria-haspopup="true">
+    <svg class="icon"><use href="#icon-plus"/></svg>
+  </button>
+</div>
+
+<!-- ============== SHARED BACKDROP ============== -->
+<div id="overlayBackdrop" class="overlay-backdrop" hidden></div>
+
+<!-- ============== SETTINGS PANEL ============== -->
+<aside id="settingsPanel" class="settings-panel" aria-hidden="true" aria-label="Settings">
+  <div class="settings-header">
+    <h2>Settings</h2>
+    <button id="closeSettings" class="icon-btn" aria-label="Close settings">
+      <svg class="icon"><use href="#icon-close"/></svg>
+    </button>
+  </div>
+
+  <div class="settings-body">
+
+    <section class="settings-section">
+      <h3>Theme</h3>
+      <div class="theme-options">
+        <button class="theme-btn" data-theme-choice="dark">
+          <span class="theme-swatch theme-swatch-dark"></span> Dark
+        </button>
+        <button class="theme-btn" data-theme-choice="light">
+          <span class="theme-swatch theme-swatch-light"></span> Light
+        </button>
+        <button class="theme-btn" data-theme-choice="amoled">
+          <span class="theme-swatch theme-swatch-amoled"></span> AMOLED
+        </button>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Background</h3>
+
+      <div class="field">
+        <label for="bgUrlInput">Image URL</label>
+        <div class="field-row">
+          <input type="url" id="bgUrlInput" placeholder="https://images.example.com/photo.jpg" />
+          <button id="bgUrlApplyBtn" class="btn btn-secondary btn-sm">Apply</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Upload from device</label>
+        <label class="upload-btn" for="bgFileInput">
+          <svg class="icon"><use href="#icon-upload"/></svg> Choose Image
+        </label>
+        <input type="file" id="bgFileInput" accept="image/*" hidden />
+      </div>
+
+      <div class="field">
+        <label for="blurRange">Blur <span id="blurValue" class="field-value">14px</span></label>
+        <input type="range" id="blurRange" min="0" max="30" value="14" />
+      </div>
+
+      <div class="field">
+        <label for="brightnessRange">Brightness <span id="brightnessValue" class="field-value">65%</span></label>
+        <input type="range" id="brightnessRange" min="20" max="150" value="65" />
+      </div>
+
+      <button id="bgResetBtn" class="btn btn-secondary btn-sm">Reset Background</button>
+    </section>
+
+    <section class="settings-section">
+      <h3>Your Data</h3>
+      <p class="settings-hint">Everything is stored only in this browser via LocalStorage.</p>
+
+      <div class="settings-actions">
+        <button id="exportDataBtn" class="btn btn-secondary">
+          <svg class="icon"><use href="#icon-upload" style="transform:rotate(180deg)"/></svg> Export Data (JSON)
+        </button>
+
+        <label class="btn btn-secondary" for="importFileInput">
+          <svg class="icon"><use href="#icon-upload"/></svg> Import Data
+        </label>
+        <input type="file" id="importFileInput" accept="application/json" hidden />
+
+        <button id="backupNowBtn" class="btn btn-secondary">
+          <svg class="icon"><use href="#icon-copy"/></svg> Quick Backup
+        </button>
+        <button id="restoreBackupBtn" class="btn btn-secondary" disabled>
+          Restore Last Backup
+        </button>
+        <p id="lastBackupText" class="settings-hint">No backup saved yet.</p>
+
+        <button id="resetAllBtn" class="btn btn-danger">
+          <svg class="icon"><use href="#icon-trash"/></svg> Reset All Data
+        </button>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Keyboard Shortcuts</h3>
+      <ul class="kbd-list">
+        <li><kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd> Focus search</li>
+        <li><kbd>A</kbd> Add shortcut</li>
+        <li><kbd>C</kbd> Add category</li>
+        <li><kbd>S</kbd> Open settings</li>
+        <li><kbd>Esc</kbd> Close any panel</li>
+      </ul>
+    </section>
+
+  </div>
+</aside>
+
+<!-- ============== ADD / EDIT SHORTCUT MODAL ============== -->
+<div id="shortcutModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="shortcutModalTitle">
+  <div class="modal-content glass">
+    <div class="modal-header">
+      <h2 id="shortcutModalTitle">Add Shortcut</h2>
+      <button class="icon-btn modal-close" data-close="shortcutModal" aria-label="Close">
+        <svg class="icon"><use href="#icon-close"/></svg>
+      </button>
+    </div>
+    <form id="shortcutForm" novalidate>
+      <input type="hidden" id="shortcutEditingId" value="" />
+
+      <div class="icon-preview-row">
+        <img id="iconPreview" class="icon-preview" alt="" src="" />
+        <button type="button" id="fetchIconBtn" class="btn btn-secondary btn-sm">Auto-fetch Icon</button>
+      </div>
+
+      <div class="field">
+        <label for="shortcutTitle">Website Name *</label>
+        <input id="shortcutTitle" type="text" required placeholder="GitHub" maxlength="40" />
+      </div>
+
+      <div class="field">
+        <label for="shortcutUrl">Website URL *</label>
+        <input id="shortcutUrl" type="text" required placeholder="https://github.com" />
+      </div>
+
+      <div class="field">
+        <label for="shortcutIcon">Icon URL (optional)</label>
+        <input id="shortcutIcon" type="text" placeholder="Leave blank to auto-fetch a favicon" />
+      </div>
+
+      <div class="field">
+        <label for="shortcutCategory">Category *</label>
+        <select id="shortcutCategory" required></select>
+      </div>
+
+      <div class="field">
+        <label for="shortcutDescription">Description (optional)</label>
+        <textarea id="shortcutDescription" rows="2" maxlength="120" placeholder="What is this for?"></textarea>
+      </div>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="shortcutFavorite" />
+        <svg class="icon"><use href="#icon-star"/></svg> Pin to favorites
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" data-close="shortcutModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Shortcut</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============== ADD / RENAME CATEGORY MODAL ============== -->
+<div id="categoryModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="categoryModalTitle">
+  <div class="modal-content glass modal-content-sm">
+    <div class="modal-header">
+      <h2 id="categoryModalTitle">Add Category</h2>
+      <button class="icon-btn modal-close" data-close="categoryModal" aria-label="Close">
+        <svg class="icon"><use href="#icon-close"/></svg>
+      </button>
+    </div>
+    <form id="categoryForm" novalidate>
+      <input type="hidden" id="categoryEditingId" value="" />
+      <div class="field">
+        <label for="categoryNameInput">Category Name *</label>
+        <input id="categoryNameInput" type="text" required maxlength="30" placeholder="e.g. Coding" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" data-close="categoryModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Category</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============== CONFIRM MODAL ============== -->
+<div id="confirmModal" class="modal" aria-hidden="true" role="alertdialog" aria-labelledby="confirmTitle">
+  <div class="modal-content glass modal-content-sm">
+    <div class="modal-header">
+      <h2 id="confirmTitle">Are you sure?</h2>
+      <button class="icon-btn modal-close" data-close="confirmModal" aria-label="Close">
+        <svg class="icon"><use href="#icon-close"/></svg>
+      </button>
+    </div>
+    <p id="confirmMessage" class="confirm-message"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" data-close="confirmModal">Cancel</button>
+      <button type="button" id="confirmOkBtn" class="btn btn-danger">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== MOVE-TO-CATEGORY POPUP ============== -->
+<ul id="moveMenu" class="context-menu" role="menu" hidden></ul>
+
+<!-- ============== CONTEXT MENU ============== -->
+<ul id="contextMenu" class="context-menu" role="menu" hidden></ul>
+
+<script src="script.js"></script>
+</body>
+</html>
