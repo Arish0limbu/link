@@ -1,7 +1,4 @@
 
- 
-     SECTION 20 — MUSIC PLAYER
-     ============================================================ */
 
   function loadMusic(url) {
     if (!dom.audioPlayer) return;
